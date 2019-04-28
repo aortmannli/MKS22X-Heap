@@ -26,12 +26,6 @@ public class MyHeap{
   }
 
   private static void pushUp(int[]data,int idx){
-    if (idx  >= data.length || idx < 0){
-     throw new IllegalArgumentException("PUSHUP");
-    }
-    if (data.length == 0){
-      throw new IllegalArgumentException("PUSHUP");
-    }
     boolean sorted = false;
     while(!sorted){
       int parent = (idx - 1)/2;
