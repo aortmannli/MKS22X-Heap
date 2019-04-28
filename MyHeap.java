@@ -3,18 +3,24 @@ import java.util.*;
 public class MyHeap{
 
   private static void pushDown(int[]data,int size,int idx){
-    boolean sorted = false;
-    while(!sorted){
-      int a = (idx*2) + 1;
-      int b = (idx*2) + 2;
-      if (a >= size && b >= size) sorted = true;
-      else{
-        int max = Math.max(data[idx], data[a]);
-        if (b < size) max = Math.max(max, data[b]);
+      boolean sorted = false;
+      while(!sorted){
+        int a = (idx*2) + 1;
+        int b = (idx*2) + 2;
+        if (a >= size && b >= size) sorted = true;
+        else{
+          int max = Math.max(data[idx], data[a]);
+          if (b < size) max = Math.max(max, data[b]);
 
-        if (max == data[idx]) sorted = true;
-        else if (max == data[a]) swap(data,idx,a);
-        else swap(data,idx,b);
+          if (max == data[idx]){
+            sorted = true;
+          }else if (max == data[a]){
+            swap(data,idx,a);
+            idx = a;
+          }else{
+            swap(data,idx,b);
+            idx = b;
+        }
       }
     }
   }
@@ -48,7 +54,7 @@ public class MyHeap{
         int temp = data[0]; //first element, also the max
         data[0] = data[i]; //swap with last element of heap
         data[i] = temp;
-        pushDown(data, i, 0); //pushdown the top element, size of the heap is equal to index
+        pushDown(data, i, 0); //pushdown the top element, size of the heap is equal to idx
       }
   }
 
