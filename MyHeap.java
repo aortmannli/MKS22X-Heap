@@ -41,8 +41,8 @@ public class MyHeap{
   }
 
   public static void heapify(int[] data){
-    int x = ((data.length-1) - 1) / 2;
-    for (int s = x; s>-1; s--){
+    int x = (data.length - 2) / 2;
+    for (int s = x; s > -1; s--){
       pushDown(data, data.length, s);
     }
   }
@@ -51,11 +51,9 @@ public class MyHeap{
   public static void heapsort(int[] data){
     heapify(data);
     for (int i = data.length - 1; i >= 0; i--){
-        int temp = data[0]; //first element, also the max
-        data[0] = data[i]; //swap with last element of heap
-        data[i] = temp;
-        pushDown(data, i, 0); //pushdown the top element, size of the heap is equal to idx
-      }
+      swap(data,0,i);
+      pushDown(data, i, 0);
+    }
   }
 
   public static void main(String[]args){
